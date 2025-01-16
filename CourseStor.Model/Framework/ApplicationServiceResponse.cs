@@ -7,10 +7,7 @@ public class ApplicationServiceResponse
 
     public bool IsFailur => _errors.Exists(error => !string.IsNullOrEmpty(error));
 
-    public void AddError(string errorMessage)
-    {
-        _errors.Add(errorMessage);
-    }
+    public void AddError(string errorMessage) => _errors.Add(errorMessage);
 
     public IReadOnlyList<string> Errors => _errors;
 }

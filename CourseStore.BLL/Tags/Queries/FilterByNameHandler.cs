@@ -2,6 +2,7 @@
 using CourseStor.Model.Tags.Queries;
 using CourseStore.BLL.Framwork;
 using CourseStore.DAL.Context;
+using CourseStore.DAL.Tags;
 using Microsoft.EntityFrameworkCore;
 
 namespace CourseStore.BLL.Tags.Queries
@@ -14,20 +15,9 @@ namespace CourseStore.BLL.Tags.Queries
 
         protected override async Task HandleRequest(FilterByName request, CancellationToken cancellationToken)
         {
-            var tags = _context.Tags.AsQueryable();
+            var tags = await _context.Tags.WhereOver(request.TagName).ToTagQrsAsync(cancellationToken);
 
-            if (!string.IsNullOrEmpty(request.TagName))
-            {
-                tags = tags.Where(p => p.TagName.Contains(request.TagName));
-            }
-
-            var result = await tags.Select(c => new TagQr
-            {
-                Id = c.Id,
-                TagName = c.TagName
-            }).ToListAsync(cancellationToken);
-
-            AddResult(result);
+            AddResult(tags);
         }
     }
 }

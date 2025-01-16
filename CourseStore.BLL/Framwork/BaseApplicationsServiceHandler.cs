@@ -7,6 +7,7 @@ public abstract class BaseApplicationsServiceHandler<TRequest, TResult> : IReque
     where TRequest : IRequest<ApplicationServiceResponse<TResult>>
 {
     protected readonly ContextStoreDbContext _context;
+
     protected ApplicationServiceResponse<TResult> _response = new ApplicationServiceResponse<TResult>() { };
 
     public BaseApplicationsServiceHandler(ContextStoreDbContext context) => _context = context;

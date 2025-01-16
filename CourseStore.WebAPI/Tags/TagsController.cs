@@ -1,15 +1,11 @@
 ﻿using CourseStor.Model.Tags.Commands;
 using CourseStor.Model.Tags.Queries;
-using CourseStore.DAL.Entities;
 using CourseStore.WebAPI.Framework;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourseStore.WebAPI.Tags;
 
-[Route("[controller]")]
-[ApiController]
 public class TagsController : BaseController
 {
     public TagsController(IMediator mediator) : base(mediator)

@@ -17,6 +17,9 @@ public class CourseConfig : IEntityTypeConfiguration<Course>
         builder.Property(p => p.StartDate)
             .HasConversion(dateTimeConverter);
 
+        builder.Property(p => p.EndDate)
+            .HasConversion(dateTimeConverter);
+
         builder.Property(p => p.ImageUrl).IsRequired().HasMaxLength(1000);
         builder.Property(p => p.Title).IsRequired().HasMaxLength(100);
         builder.Property(p => p.Description).IsRequired();
